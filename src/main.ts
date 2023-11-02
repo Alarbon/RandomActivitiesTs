@@ -5,16 +5,14 @@ import {
 import { Activity } from "./Interfaces/Activity.interface";
 import { ActivityPhoto } from "./Interfaces/ActivityPhoto.interface";
 import { requestPhoto } from "./Providers/ProviderPhotoActivity";
+import Swal from 'sweetalert2';
+
+
 
 
 
 let activity: Activity ;
 let urlPhoto: ActivityPhoto;
-
-window.onload = async () => {
-  activity = await requestActivityRandom();
-  urlPhoto = await requestPhoto(activity.type);
-}
 
 
 
@@ -37,7 +35,11 @@ const accessibilityDOM: HTMLSpanElement = document.getElementById(
   "accessibility"
 ) as HTMLSpanElement;
 
-//Actividad por defecto
+
+window.onload = async () => {
+  activity = await requestActivityRandom();
+  urlPhoto = await requestPhoto(activity.type);
+  //Actividad por defecto
 imageActivity.setAttribute("src", urlPhoto.results[0].urls.regular);
 activityDOM.innerHTML = activity.activity;
 typeDOM.innerHTML = activity.type;
@@ -45,6 +47,8 @@ priceDOM.innerHTML =
   getPriceString(activity.price) + " (" + activity.price.valueOf() + "€) ";
 participantsDOM.innerHTML = activity.participants.toString();
 accessibilityDOM.innerHTML = getAccessibilityString(activity.accessibility);
+}
+
 
 const filterForm: HTMLFormElement = document.getElementById(
   "filterForm"
@@ -57,7 +61,13 @@ filterForm.addEventListener("submit", async (event) => {
   const accessibilityForm: HTMLSelectElement = document.getElementById("accessibilityForm") as HTMLSelectElement;
   
   if(priceForm.value===""||participantsForm.value===""||accessibilityForm.value===""){
-  alert("You must fill all the fields!");
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'You must fill all the fields!',
+ 
+    });
+ 
   }else{
  //Llamamos a la API
   activity = await requestActivity(parseInt(participantsForm.value), priceForm.value, accessibilityForm.value);
@@ -65,13 +75,13 @@ filterForm.addEventListener("submit", async (event) => {
 
 
   if (activity.activity === undefined) {
-    // Swal.fire({
-    //     icon: 'error',
-    //     title: 'Oops...',
-    //     text: 'There aren\'t activities with those parameters!',
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'There aren\'t activities with those parameters!',
    
-    //   });
-    alert("There aren't activities with those parameters!");
+      });
+  
     }
   //Pintamos los datos
   imageActivity.setAttribute("src", urlPhoto.results[0].urls.regular);
