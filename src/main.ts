@@ -8,9 +8,15 @@ import { requestPhoto } from "./Providers/ProviderPhotoActivity";
 
 
 
-let activity: Activity = await requestActivityRandom();
+let activity: Activity ;
+let urlPhoto: ActivityPhoto;
 
-let urlPhoto: ActivityPhoto = await requestPhoto(activity.type);
+window.onload = async () => {
+  activity = await requestActivityRandom();
+  urlPhoto = await requestPhoto(activity.type);
+}
+
+
 
 const imageActivity: HTMLImageElement = document.getElementById(
   "imagenActivity"
