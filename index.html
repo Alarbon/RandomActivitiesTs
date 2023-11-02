@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/src/assets/favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <title>Randoms Activities </title>
+</head>
+
+<body class="bg-gradient-to-t from-slate-950 to-95% min-h-screen flex flex-col items-center justify-center">
+  <div
+    class="bg-gradient-to-t from-slate-300 to-teal-200 p-4 rounded-lg shadow-xl shadow-black max-w-screen-md w-full mb-4 md:w-96">
+    <div class="w-full flex items-center justify-center">
+      <img id="imagenActivity" src="" alt="" class="max-w-full h-56">
+    </div>
+    <div class="w-full p-4">
+      <table class="w-full border-collapse">
+        <tr>
+          <td class="border-b p-2 font-bold text-center text-xl"><span id="activity"></span></td>
+        </tr>
+        <tr>
+          <td class="border-b p-2 font-bold">Type: <span id="type" class=" font-normal"></span></td>
+        </tr>
+        <tr>
+          <td class="border-b p-2 font-bold">Price: <span id="price" class=" font-normal"></span></td>
+        </tr>
+        <tr>
+          <td class="border-b p-2 font-bold">Participants: <span id="participants" class=" font-normal"></span></td>
+        </tr>
+        <tr>
+          <td class="border-b p-2 font-bold">Accessibility: <span id="accessibility" class=" font-normal"></span></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div
+    class="bg-gradient-to-t from-slate-300 to-teal-200 text-gray-800 rounded-xl shadow-xl max-w-screen-md w-full mx-auto p-4 mb-4">
+    <h2 class="text-2xl font-bold text-center mb-4">Activity Filters</h2>
+    <form class="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0" id="filterForm">
+      <div class="md:w-1/4 text-center">
+        <label for="priceForm" class="block text-lg font-semibold mb-2">Price:</label>
+        <select id="priceForm" class="border p-2 rounded-full">
+          <option value="low" selected>Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+      </div>
+      <div class="md:w-1/4 text-center">
+        <label for="participantsForm" class="block text-lg font-semibold mb-2">Participants:</label>
+        <input id="participantsForm" type="number" min="1" class="border p-2 rounded-full w-28 text-center" placeholder="4">
+      </div>
+      <div class="md:w-1/4 text-center">
+        <label for="accessibilityForm" class="block text-lg font-semibold mb-2">Accessibility:</label>
+        <select id="accessibilityForm" class="border p-2 rounded-full" >
+          <option value="low" selected>Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+      </div>
+      <div class="md:w-1/4 text-center">
+        <button id="generateBtn" type="submit" class="bg-cyan-900 hover:bg-cyan-800 text-white px-4 py-2 rounded-lg mt-5">Generate
+          Activity</button>
+      </div>
+    </form>
+  </div>
+
+
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
